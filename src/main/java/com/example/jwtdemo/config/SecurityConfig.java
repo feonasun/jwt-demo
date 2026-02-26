@@ -38,7 +38,7 @@ public class SecurityConfig {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))  // 无状态
                 .authorizeHttpRequests(auth ->
                         auth
-                                .requestMatchers("/auth/**").permitAll()  // 登录注册放行
+                                .requestMatchers("/auth/**", "/api/public", "/error").permitAll()  // 登录注册放行
                                 .anyRequest().authenticated()  // 其他请求需认证
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

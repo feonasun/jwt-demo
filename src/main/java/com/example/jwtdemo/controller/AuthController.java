@@ -51,7 +51,9 @@ public class AuthController {
             return "用户名已存在";
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole("ROLE_USER");  // 默认角色
+        if (user.getRole() == null) {
+            user.setRole("ROLE_USER");  // 默认角色
+        }
         userRepository.save(user);
         return "注册成功";
     }
